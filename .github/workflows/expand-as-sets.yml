@@ -42,6 +42,8 @@ jobs:
           c="'"
           b=$(whois -h whois.radb.net \!iAS-IU13WAN,1 | tr -d '\n' | grep -Po "AS[0-9]+" | grep -Po "[0-9]+" | awk -v d="' OR \"asn\" = '" '{s=(NR==1?s:s d)$0}END{print s}')
           echo "AS-IU13WAN,$a$b$c" > as-sets.csv
+          echo "AS-ZITOMEDIA,\"asn\" = '26801' OR \"asn\" = '1246' OR \"asn\" = '1643' OR \"asn\" = '6645' OR \"asn\" = '7816' OR \"asn\" = '11059' OR \"asn\" = '11558' OR \"asn\" = '13394' OR \"asn\" = '14369' OR \"asn\" = '14438' OR \"asn\" = '15230' OR \"asn\" = '15322' OR \"asn\" = '16478' OR \"asn\" = '17177' OR \"asn\" = '19912' OR \"asn\" = '20031' OR \"asn\" = '20167' OR \"asn\" = '20320' OR \"asn\" = '20392' OR \"asn\" = '21707' OR \"asn\" = '22342' OR \"asn\" = '26126' OR \"asn\" = '26181' OR \"asn\" = '26365' OR \"asn\" = '27187' OR \"asn\" = '27290' OR \"asn\" = '27507' OR \"asn\" = '29701' OR \"asn\" = '30405' OR \"asn\" = '32162' OR \"asn\" = '32554' OR \"asn\" = '32556' OR \"asn\" = '32930' OR \"asn\" = '33154' OR \"asn\" = '36253' OR \"asn\" = '39942' OR \"asn\" = '46356' OR \"asn\" = '47044' OR \"asn\" = '53374' OR \"asn\" = '53718' OR \"asn\" = '55084' OR \"asn\" = '394305' OR \"asn\" = '395333' OR \"asn\" = '395821' OR \"asn\" = '396226' OR \"asn\" = '396268' OR \"asn\" = '397331' OR \"asn\" = '397365' OR \"asn\" = '397427' OR \"asn\" = '397606' OR \"asn\" = '397737' OR \"asn\" = '398496' OR \"asn\" = '398945' OR \"asn\" = '399238'" >> as-sets.csv
+
           exclude=$(whois -h whois.radb.net \!iAS-IU13WAN,1 | tr -d '\n' | grep -Po "AS[0-9]+" | grep -Po "[0-9]+" | awk -v d="|" '{s=(NR==1?s:s d)$0}END{print s}')
           readarray -t objects < AS-SET.txt
           for object in "${objects[@]}"
